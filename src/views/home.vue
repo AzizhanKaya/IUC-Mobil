@@ -53,68 +53,66 @@ const slides = [
         </SwiperSlide>
       </Swiper>
     </div>
-    <div ref="swiperRef" class="news">
-      <span>Etkinlikler</span>
-      <Swiper
-        :slides-per-view="1"
-        :space-between="10"
-        @swiper="(swiper) => (swiperRef.value = swiper.el)"
-      >
-        <SwiperSlide v-for="(item, index) in slides" :key="index">
-          <a :href="item.link" target="_blank" class="slide">
-            <div class="image-container">
-              <img :src="item.img" :alt="item.header" />
-              <h2 class="slide-title">{{ item.header }}</h2>
-            </div>
-          </a>
-        </SwiperSlide>
-      </Swiper>
+
+    <div class="oylama">
+      <h1>Oylama ></h1>
+      <span class="soru">Soru?</span>
+      <ul>
+        <li>
+          1.Seçenek
+        </li>
+        <li>
+          2.Seçenek
+        </li>
+      </ul>
     </div>
-    <div ref="swiperRef" class="news">
-      <span>Duyurular</span>
-      <Swiper
-        :slides-per-view="1"
-        :space-between="10"
-        @swiper="(swiper) => (swiperRef.value = swiper.el)"
-      >
-        <SwiperSlide v-for="(item, index) in slides" :key="index">
-          <a :href="item.link" target="_blank" class="slide">
-            <div class="image-container">
-              <img :src="item.img" :alt="item.header" />
-              <h2 class="slide-title">{{ item.header }}</h2>
-            </div>
-          </a>
-        </SwiperSlide>
-      </Swiper>
-    </div>
-    <div ref="swiperRef" class="news">
-      <span>Duyurular</span>
-      <Swiper
-        :slides-per-view="1"
-        :space-between="10"
-        @swiper="(swiper) => (swiperRef.value = swiper.el)"
-      >
-        <SwiperSlide v-for="(item, index) in slides" :key="index">
-          <a :href="item.link" target="_blank" class="slide">
-            <div class="image-container">
-              <img :src="item.img" :alt="item.header" />
-              <h2 class="slide-title">{{ item.header }}</h2>
-            </div>
-          </a>
-        </SwiperSlide>
-      </Swiper>
-    </div>
+    
   </div>
 </template>
 
 <style scoped>
+
+
+.oylama {
+  border: 1px solid black;
+  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 20px;
+  padding-top: 10px;
+  margin-inline: 10px;
+  background: linear-gradient(to bottom, black 30%, white 30%);
+}
+
+.oylama h1 {
+  color: white;
+  width: 105%;
+  
+  
+}
+
+.oylama .soru{
+
+}
+
+.oylama li {
+  list-style-type: none;
+  background-color: white;
+  width: 80%;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 10px;
+  line-height: 30px;
+  padding-left: 20px;
+}
+
+
 
 .home-scroll {
   height: 100%;
   overflow-y: scroll;
   padding-bottom: 125px;
   scrollbar-width: none;
-  scroll-snap-type: y mandatory;
 }
 
 header {
@@ -145,9 +143,6 @@ header img {
   margin-right: 3%;
 }
 
-
-
-
 .news {
   width: 100%;
   max-width: 600px;
@@ -169,7 +164,6 @@ span {
 }
 
 .image-container {
-  position: relative;
   width: 100%;
   height: 250px; 
   overflow: hidden;

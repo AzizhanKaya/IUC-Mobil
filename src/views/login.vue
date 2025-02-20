@@ -147,7 +147,7 @@ export default {
     color: #94a3b8;
   }
 
-  input:focus, .login input:hover {
+  input:focus, input:hover {
     border-color: rgba(129, 140, 248);
     background-color: #fff;
     box-shadow: 0 0 0 5px rgb(129 140 248 / 30%);

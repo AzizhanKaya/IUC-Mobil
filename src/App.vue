@@ -2,28 +2,28 @@
 import Login from '@/views/login.vue';
 
 export default {
-  components: {
-    Login
-  },
-  data() {
-    return {
-      isLogined: false,
-      isLoading: true,
-    };
-  },
-  mounted() {
-    document.addEventListener("readystatechange", () => {
-    if (document.readyState === "complete") {
-        this.finishLoading();
-      }
-    });
-  },
-  methods: {
-    finishLoading() {
-      this.isLoading = false;
+    components: {
+      Login
     },
-  },
-};
+    data() {
+      return {
+        isLogined: false,
+        isLoading: true,
+      };
+    },
+    mounted() {
+      document.addEventListener("readystatechange", () => {
+      if (document.readyState === "complete") {
+          this.finishLoading();
+        }
+      });
+    },
+    methods: {
+      finishLoading() {
+        this.isLoading = false;
+      },
+    },
+  };
 </script>
 
 <template>
@@ -50,111 +50,112 @@ export default {
 
 <style scoped>
 
-  .login-wrapper {
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
+    .login-wrapper {
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
 
-  .main-content {
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    width: calc(100% + 50px);
-    height: 100%;
-    background-color: aliceblue;
-    position: absolute;
-    transform: translateX(-50px);
-    padding-left: 50px;
-    overflow: hidden;
-  }
+    .main-content {
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+      width: calc(100% + 50px);
+      height: 100%;
+      background-color: aliceblue;
+      position: absolute;
+      transform: translate3d(-50px, 0, 0);
+      padding-left: 50px;
+      overflow: hidden;
+    }
 
-  .slide-fade-enter-to,
-  .slide-fade-leave-from{
-    transform: translateY(-50%) translateX(-50%);
-    opacity: 1;
-  }
-  .slide-fade-enter-from,
-  .slide-fade-leave-to{
-    transform: translateY(-20%) translateX(-50%);
-    opacity: 0;
-  }
-  .slide-fade-enter-active {
-    transition: all .5s;
-  }
-  .slide-fade-leave-active {
-    transition: all .5s ease-in-out;
-  }
+    .slide-fade-enter-to,
+    .slide-fade-leave-from{
+      transform: translate3d(0, -50%, 0) translateX(-50%);
+      opacity: 1;
+    }
+    .slide-fade-enter-from,
+    .slide-fade-leave-to{
+      transform: translate3d(0, -20%, 0) translateX(-50%);
+      opacity: 0;
+    }
+    .slide-fade-enter-active {
+      transition: all .5s;
+    }
+    .slide-fade-leave-active {
+      transition: all .5s ease-in-out;
+    }
 
-  .slide-enter-to,
-  .slide-leave-from{
-    transform: translateX(-50px);
-  }
-  .slide-enter-from,
-  .slide-leave-to{
-    transform: translateX(calc(100% + 50px));
-  }
-  .slide-enter-active {
-    transition: transform 1s ease;
-  }
+    .slide-enter-to,
+    .slide-leave-from{
+      transform: translate3d(-50px, 0, 0);
+    }
+    .slide-enter-from,
+    .slide-leave-to{
+      transform: translate3d(calc(100% + 50px), 0, 0);
+    }
+    .slide-enter-active {
+      transition: transform 1s ease;
+    }
 
 </style>
 
 <style>
 
-  html {
-    width: 100%;
-    height: 100%;
-  }
-
-  body {
-    background: linear-gradient(45deg, rgba(0, 0, 139, 0.7) 10%, rgba(0, 191, 255, 0.7) 100%);
-    background-size: 200% 200%;
-    animation: gradientAnimation 5s ease infinite;
-    touch-action: none;
-    margin: 0;
-    height: 100%;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 30%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
-    filter: opacity(60%);
-    z-index: -10;
-    pointer-events: none;
-  }
-  
-  @keyframes gradientAnimation {
-    0% {
-      background-position: 0% 50%;
+    html {
+        height: 100%;
     }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 
-  #app {
-    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica, sans-serif, serif, Arial;
-  }
+    body {
+        background: linear-gradient(45deg, rgba(0, 0, 139, 0.7) 10%, rgba(0, 191, 255, 0.7) 100%);
+        background-size: 200% 200%;
+        animation: gradientAnimation 5s ease infinite;
+        
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+    }
 
-  a,
-  button{
-    -webkit-tap-highlight-color: transparent;
-  }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    body::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 30%;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+        filter: opacity(60%);
+        z-index: -10;
+        pointer-events: none;
+    }
+    
+    @keyframes gradientAnimation {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+    }
+
+    #app {
+        font-family: system-ui, -apple-system, "Helvetica Neue",Helvetica, sans-serif, serif, Arial;
+    }
+
+    a,
+    button{
+        -webkit-tap-highlight-color: transparent;
+    }
 
 </style>
