@@ -111,36 +111,38 @@ const slides = [
 .home-scroll {
   height: 100%;
   overflow-y: scroll;
-  padding-bottom: 125px;
   scrollbar-width: none;
 }
 
 header {
   background-color: #14243b;
-  height: clamp(50px, 5%, 100px);
+  box-sizing: content-box;
+  padding-top: var(--safe-inset-top);
+  padding-inline: 25%;
+  width: 100%;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  height: clamp(75px, 5%, 150px);
   z-index: 10;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 25%;
-  width: 150%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 header img {
   object-fit: contain;
-  height: 120%;
-  transform: translateY(-3%);
+  height: 90%;
+  transform: translateY(10%) ;
 }
 
 .profile{
   color: white;
   font-size: 2em;
-  transform: translateY(8%);
-  margin-right: 3%;
+  padding-top: 5%;
+  padding-right: 5%;
 }
 
 .news {

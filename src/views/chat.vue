@@ -98,6 +98,7 @@ const rooms = [
         overflow-y: scroll;
         overflow-x: hidden;
         padding-bottom: 75px;
+        padding-top: var(--safe-inset-top);
     }
 
     .header {

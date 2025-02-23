@@ -1,5 +1,6 @@
 <script>
 import Login from '@/views/login.vue';
+import { getInsets } from 'tauri-plugin-safe-area-insets';
 
 export default {
     components: {
@@ -17,6 +18,16 @@ export default {
           this.finishLoading();
         }
       });
+
+      getInsets().then((insets) => {
+        document.documentElement.style.setProperty('--safe-inset-top', `${insets.top}px`);
+        document.documentElement.style.setProperty('--safe-inset-bottom', `${insets.bottom}px`);
+        document.documentElement.style.setProperty('--safe-inset-left', `${insets.left}px`);
+        document.documentElement.style.setProperty('--safe-inset-right', `${insets.right}px`);
+      }).catch((error) => {
+          console.error("Error getting insets:", error);
+      });
+      
     },
     methods: {
       finishLoading() {
@@ -109,13 +120,13 @@ export default {
 
     html {
         height: 100%;
+        background-color: red;
     }
 
     body {
         background: linear-gradient(45deg, rgba(0, 0, 139, 0.7) 10%, rgba(0, 191, 255, 0.7) 100%);
         background-size: 200% 200%;
         animation: gradientAnimation 5s ease infinite;
-        
         margin: 0;
         height: 100%;
         overflow: hidden;
