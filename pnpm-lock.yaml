@@ -17,6 +17,9 @@ importers:
       swiper:
         specifier: ^11.2.2
         version: 11.2.2
+      tauri-plugin-safe-area-insets:
+        specifier: ^0.1.0
+        version: 0.1.0
       vue:
         specifier: ^3.5.13
         version: 3.5.13
@@ -509,6 +512,9 @@ packages:
     resolution: {integrity: sha512-FmAN6zACpVUbd/1prO9xQ9gKo9cc6RE2UKU/z4oXtS8fNyX4sdOW/HHT/e444WucLJs0jeMId6WjdWM2Lrs8zA==}
     engines: {node: '>= 4.7.0'}
 
+  tauri-plugin-safe-area-insets@0.1.0:
+    resolution: {integrity: sha512-NhtxSQdU7+laTJiO4WZFlTB1CBzRlNE5EuHflGAGXS55fiwOkkaWztfNishFQO+eZtb9i5jLHX3Yho48lnqcRQ==}
+
   terser@5.37.0:
     resolution: {integrity: sha512-B8wRRkmre4ERucLM/uXx4MOV5cbnOlVAqUst+1+iLKPI0dOgFO28f84ptoQt9HEI537PMzfYa/d+GEPKTRXmYA==}
     engines: {node: '>=10'}
@@ -957,6 +963,10 @@ snapshots:
     optional: true
 
   swiper@11.2.2: {}
+
+  tauri-plugin-safe-area-insets@0.1.0:
+    dependencies:
+      '@tauri-apps/api': 2.2.0
 
   terser@5.37.0:
     dependencies:

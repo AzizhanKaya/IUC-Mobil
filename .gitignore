@@ -13,7 +13,6 @@ dist-ssr
 *.local
 backend
 src-tauri/target
-src-tauri/gen
 
 # Editor directories and files
 .vscode/*
