@@ -44,7 +44,7 @@ export default {
 
     footer {
         position: absolute;
-        bottom: var(--safe-inset-bottom);
+        bottom: var(--safe-inset-bottom, 10px);
         width: 95%;
         left: 50%;
         transform: translateX(-50%);

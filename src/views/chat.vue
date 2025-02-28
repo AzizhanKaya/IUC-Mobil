@@ -1,5 +1,7 @@
 <script setup>
 
+import Chat from "../components/chat.vue";
+
 const rooms = [
     {
         name: 'Aziz',
@@ -57,7 +59,7 @@ const rooms = [
 
 
 <template>
-    <div class="chat">
+    <div class="chats">
 
     
         <div class="header">
@@ -88,17 +90,21 @@ const rooms = [
         </div>
         
     </div>
+
+    <Teleport to="#app">
+        <Chat />
+    </Teleport>
     
 </template>
 
 <style scoped>
 
-    .chat{
+    .chats{
         height: 100%;
         overflow-y: scroll;
         overflow-x: hidden;
         padding-bottom: 75px;
-        padding-top: var(--safe-inset-top);
+        padding-top: var(--safe-inset-top, 20px);
     }
 
     .header {
@@ -185,6 +191,7 @@ const rooms = [
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        gap: 15px;
     }
     
     .time {

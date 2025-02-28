@@ -80,7 +80,7 @@ const slides = [
   overflow: hidden;
   padding: 20px;
   padding-top: 10px;
-  margin-inline: 10px;
+  margin-inline: auto;
   background: linear-gradient(to bottom, black 30%, white 30%);
 }
 
@@ -91,9 +91,6 @@ const slides = [
   
 }
 
-.oylama .soru{
-
-}
 
 .oylama li {
   list-style-type: none;
@@ -112,12 +109,17 @@ const slides = [
   height: 100%;
   overflow-y: scroll;
   scrollbar-width: none;
+  
+}
+
+.home-scroll > * {
+  max-width: 600px;
 }
 
 header {
   background-color: #14243b;
   box-sizing: content-box;
-  padding-top: var(--safe-inset-top);
+  padding-top: var(--safe-inset-top, 20px);
   padding-inline: 25%;
   width: 100%;
   left: 50%;
@@ -135,19 +137,18 @@ header {
 header img {
   object-fit: contain;
   height: 90%;
-  transform: translateY(10%) ;
+  transform: translateY(10%);
 }
 
 .profile{
   color: white;
   font-size: 2em;
-  padding-top: 5%;
+  transform: translateY(10px);
   padding-right: 5%;
 }
 
 .news {
   width: 100%;
-  max-width: 600px;
   margin: auto;
 }
 

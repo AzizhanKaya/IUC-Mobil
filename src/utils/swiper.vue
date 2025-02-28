@@ -21,19 +21,16 @@ export default {
             x: 0,
             y: 0,
             direction: null,
-            isTouching: false,
             swiper: null,
             screenWidth: null,
             isAnimating: false,
-            initialTransform: null,
             isOpen: false,
         }
     },
     mounted() {
         this.swiper = this.$refs.swiper;
         this.screenWidth = window.innerWidth;
-        this.initialTransform = this.screenWidth;
-        this.swiper.style.transform = `translate3d(${this.initialTransform}px, 0px, 0px)`;
+        this.swiper.style.transform = `translate3d(${this.screenWidth}px, 0px, 0px)`;
     },
     methods: {
         touchStart(e) {
@@ -41,18 +38,16 @@ export default {
             
             this.startX = e.touches[0].clientX;
             this.startY = e.touches[0].clientY;
-            this.initialTransform = this.x || this.initialTransform;
             
             setTimeout(() => {
                 this.direction = Math.abs(this.x - this.startX) > Math.abs(this.y - this.startY) ? 'horizontal' : 'vertical';
             }, 10);
 
-            this.isTouching = true;
         },
         touchMove(e) {
             if (this.isAnimating) return;
             
-            this.x = e.touches[0].clientX - this.startX + this.initialTransform;
+            this.x = e.touches[0].clientX;
             
             if (!this.direction) {
                 this.y = e.touches[0].clientY;
@@ -61,6 +56,7 @@ export default {
 
             if (this.direction === 'horizontal') {
                 e.preventDefault();
+                this.swiper.style
             }
         },
         touchEnd() {
@@ -75,13 +71,11 @@ export default {
             }
             
             this.direction = null;
-            this.isTouching = false;
         },
         open() {
             this.isAnimating = true;
             this.x = 0;
             this.isOpen = true;
-            this.$emit('swipe-left');
             
             setTimeout(() => {
                 this.isAnimating = false;
@@ -91,7 +85,6 @@ export default {
             this.isAnimating = true;
             this.x = this.screenWidth;
             this.isOpen = false;
-            this.$emit('swipe-right');
             
             setTimeout(() => {
                 this.isAnimating = false;
@@ -100,10 +93,10 @@ export default {
     },
     computed: {
         style() {
-            if (this.direction !== 'horizontal' && !this.isAnimating) return {};
+            if (this.direction !== 'horizontal') return {};
 
             return {
-                transition: this.isTouching ? 'none' : 'transform 0.3s ease-out',
+                transition: this.isAnimating ? 'transform 0.3s ease-out' : 'none',
                 transform: `translate3d(${this.x}px, 0px, 0px)`
             }
         }
@@ -113,13 +106,9 @@ export default {
 
 <style scoped>
     .swiper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
+        position: absolute;
         width: 100%;
         background: white;
-        touch-action: pan-y;
         will-change: transform;
     }
 </style>

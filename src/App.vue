@@ -120,11 +120,11 @@ export default {
 
     html {
         height: 100%;
-        background-color: red;
+        background-color: aliceblue;
     }
 
     body {
-        background: linear-gradient(45deg, rgba(0, 0, 139, 0.7) 10%, rgba(0, 191, 255, 0.7) 100%);
+        background: linear-gradient(45deg, rgb(77, 20, 120) 10%, rgb(77, 134, 179) 100%);
         background-size: 200% 200%;
         animation: gradientAnimation 5s ease infinite;
         margin: 0;
@@ -165,7 +165,13 @@ export default {
     }
 
     a,
-    button{
+    button,
+    input,
+    textarea,
+    select,
+    option,
+    label,
+    svg{
         -webkit-tap-highlight-color: transparent;
     }
 
