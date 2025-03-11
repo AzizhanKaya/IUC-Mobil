@@ -1,107 +1,81 @@
 <script setup>
-import { ref } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
-import { Icon } from '@iconify/vue/dist/iconify.js';
-const swiperRef = ref(null);
+    import { ref } from 'vue';
+    import { Swiper, SwiperSlide } from 'swiper/vue';
+    import 'swiper/css';
+    import { Icon } from '@iconify/vue/dist/iconify.js';
+    import  Vote  from '../components/vote.vue'
 
-const slides = [
-  {
-    img: 'https://cdn.iuc.edu.tr/FileHandler2.ashx?f=iuc-izmir-biyotip-ve-genom-merkezi-ziyareti.JPG',
-    header: 'Üniversitemizden İzmir Biyotıp ve Genom Merkezi’ne Ziyaret',
-    link: 'https://www.iuc.edu.tr/tr/haber/universitemizden-izmir-biyotip-ve-genom-merkezine-ziyaret-51007800730071006400770059004F0030005300370039007900700046006200610041004F003200370077003200',
-  },
-  {
-    img: 'https://cdn.iuc.edu.tr/FileHandler2.ashx?f=entertech-istanbul-teknokent--yildiz-teknopark-protokol-imza-toreni.jpeg',
-    header: 'Entertech İstanbul Teknokent ve YTÜ Yıldız Teknopark Arasında İş Birliği Protokolü İmzalandı',
-    link: 'https://www.iuc.edu.tr/tr/haber/entertech-istanbul-teknokent-ve-ytu-yildiz-teknopark-arasinda-is-birligi-protoko-77004F00580054002D005F002D005F00360033007A0039007900700046006200610041004F003200370077003200',
-  },
-  {
-    img: 'https://cdn.iuc.edu.tr/FileHandler2.ashx?f=psby_degerlendirme-raporu_1.jpg',
-    header: 'Ormancılık Meslek Yüksekokulundan Akreditasyon Başarısı',
-    link: 'https://www.iuc.edu.tr/tr/haber/ormancilik-meslek-yuksekokulundan-akreditasyon-basarisi-2D007A0072006D0054006C003800770036006300330039007900700046006200610041004F003200370077003200',
-  },
-];
+    const swiperRef = ref(null);
+    const slides = ref([]);
+    const isLoading = ref(true);
+
+    const fetchNews = async () => {
+        try {
+            const response = await fetch("https://service-cms.iuc.edu.tr/api/webclient/f_getNewsBox?siteKey=8FF2191E5F0343B5AA2F9BF774F93F5A");
+            const data = await response.json();
+            
+            slides.value = data?.Data?.map(item => ({
+                img: "https://cdn.iuc.edu.tr/FileHandler.ashx?f=" + item.Img,
+                header: item.Header,
+                link: "https://iuc.edu.tr/tr/haber/" + item.Route,
+            }));
+
+            
+        } catch (error) {
+            console.error("Haberler yüklenirken hata oluştu:", error);
+        } finally {
+            isLoading.value = false;
+        }
+    };
+
+    fetchNews();
+
 </script>
 
 <template>
-  <header>
-    
-    <img src="/banner.png">
-    <div class="profile">
-      <Icon icon="iconamoon:profile-circle-fill"> </Icon>
-    </div>
-  </header>
+    <header>
+        <img src="/banner.png">
+        <div class="profile">
+            <Icon icon="iconamoon:profile-circle-fill"> </Icon>
+        </div>
+    </header>
 
   <div class="home-scroll">
     <div ref="swiperRef" class="news">
+
       <span>Haberler</span>
-      <Swiper
-        :slides-per-view="1"
-        :space-between="10"
-        @swiper="(swiper) => (swiperRef.value = swiper.el)"
-      >
-        <SwiperSlide v-for="(item, index) in slides" :key="index">
-          <a :href="item.link" target="_blank" class="slide">
-            <div class="image-container">
-              <img :src="item.img" :alt="item.header" />
-              <h2 class="slide-title">{{ item.header }}</h2>
-            </div>
-          </a>
-        </SwiperSlide>
-      </Swiper>
+
+      <template v-if="isLoading">
+        <div class="skeleton-slide"></div>
+      </template>
+
+      <template v-else>
+            <Swiper
+                :slides-per-view="1"
+                :space-between="10"
+                @swiper="(swiper) => (swiperRef.value = swiper.el)"
+            >
+                <SwiperSlide v-for="(item, index) in slides" :key="index">
+                    <a :href="item.link" target="_blank" class="slide">
+                        <div class="image-container">
+                            <img :src="item.img" />
+                            <h2 class="slide-title">{{ item.header }}</h2>
+                        </div>
+                    </a>
+                </SwiperSlide>
+
+            </Swiper>
+        </template>
     </div>
 
-    <div class="oylama">
-      <h1>Oylama ></h1>
-      <span class="soru">Soru?</span>
-      <ul>
-        <li>
-          1.Seçenek
-        </li>
-        <li>
-          2.Seçenek
-        </li>
-      </ul>
-    </div>
-    
+    <Vote />
   </div>
 </template>
 
 <style scoped>
 
 
-.oylama {
-  border: 1px solid black;
-  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  overflow: hidden;
-  padding: 20px;
-  padding-top: 10px;
-  margin-inline: auto;
-  background: linear-gradient(to bottom, black 30%, white 30%);
-}
 
-.oylama h1 {
-  color: white;
-  width: 105%;
-  
-  
-}
-
-
-.oylama li {
-  list-style-type: none;
-  background-color: white;
-  width: 80%;
-  border: 1px solid black;
-  border-radius: 20px;
-  margin: 10px;
-  line-height: 30px;
-  padding-left: 20px;
-}
 
 
 
@@ -160,7 +134,6 @@ span {
 
 .slide {
   display: flex;
-  flex-direction: column;
   align-items: center;
   text-decoration: none;
   color: white;
@@ -176,7 +149,7 @@ span {
 .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 15px;
 }
 
@@ -189,12 +162,27 @@ span {
   transform: translateX(-50%);
   width: 90%;
   padding: 5px;
-  font-size: 14px;
   font-weight: bold;
   color: white;
   text-shadow: 2px 2px 4px black;
   border-radius: 5px;
   text-align: left;
   font-size: 1em;
+  line-height: 1.4em;
+}
+
+.skeleton-slide {
+  
+  height: 250px;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 400% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+@keyframes loading {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }
 </style>

@@ -13,7 +13,7 @@ export default {
       { path: '/', iconFilled: 'mdi:home', iconOutline: 'mdi:home-outline' },
       { path: '/community', iconFilled: 'fluent:people-community-16-filled', iconOutline: 'fluent:people-community-16-regular' },
       { path: '/connections', iconFilled: 'streamline:cards-solid', iconOutline: 'streamline:cards' },
-      { path: '/chat', iconFilled: 'bxs:chat', iconOutline: 'bx:chat' },
+      { path: '/chats', iconFilled: 'bxs:chat', iconOutline: 'bx:chat' },
       { path: '/settings', iconFilled: 'ic:round-settings', iconOutline: 'fluent:settings-32-regular' }
     ];
 

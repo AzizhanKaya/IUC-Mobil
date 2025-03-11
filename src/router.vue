@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/home';
 import Community from '@/views/community';
 import Connections from '@/views/connections';
-import Chat from '@/views/chat';
+import Chat from '@/views/chats';
 import Settings from '@/views/settings';
 import Main from '@/layouts/main.vue';
 
@@ -16,7 +16,7 @@ const routes = [
       { path: '/', name: 'Home', component: Home },
       { path: '/community', name: 'Community', component: Community },
       { path: '/connections', name: 'Connections', component: Connections },
-      { path: '/chat', name: 'Chat', component: Chat },
+      { path: '/chats', name: 'Chat', component: Chat },
       { path: '/settings', name: 'Settings', component: Settings },
     ],
   },
