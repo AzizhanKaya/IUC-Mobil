@@ -50,7 +50,7 @@ export default {
         transform: translateX(-50%);
         border-radius: 20px;
         padding: 5px;
-        backdrop-filter: blur(50px);
+        backdrop-filter: blur(5px);
         background-color: #00445a6b;
         box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
         z-index: 10;

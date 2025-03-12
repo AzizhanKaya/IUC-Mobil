@@ -1,103 +1,69 @@
 <script setup>
-
 import Chat from "../components/chat.vue";
+import { ref, computed } from 'vue';
 
 const rooms = [
-    {
-        name: 'Aziz',
-        lastMessage: 'HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello',
-        time: '12:00',
-    },
-    {
-        name: 'Room 2',
-        lastMessage: 'Hello',
-        time: '12:00',
-        unreadCount: 10
-    },
-    {
-        name: 'Room 1',
-        lastMessage: 'Hello',
-        time: '12:00',
-    },
-    {
-        name: 'Room 2',
-        lastMessage: 'Hello',
-        time: '12:00',
-        unreadCount: 10
-    },
-    {
-        name: 'Room 1',
-        lastMessage: 'Hello',
-        time: '12:00',
-    },
-    {
-        name: 'Room 2',
-        lastMessage: 'Hello',
-        time: '12:00',
-        unreadCount: 10
-    },
-    {
-        name: 'Room 1',
-        lastMessage: 'Hello',
-        time: '12:00',
-    },
-    {
-        name: 'Room 2',
-        lastMessage: 'Hello',
-        time: '12:00',
-        unreadCount: 10
-    },
-    {
-        name: 'Room 1',
-        lastMessage: 'Hello',
-        time: '12:00',
-    },
-    
-]
+    { name: 'Aziz', lastMessage: 'HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello', time: '12:00' },
+    { name: 'Room 2', lastMessage: 'Hello', time: '12:00', unreadCount: 10 },
+    { name: 'Room 1', lastMessage: 'Hello', time: '12:00' },
+    { name: 'Room 2', lastMessage: 'Hello', time: '12:00', unreadCount: 10 },
+    { name: 'Room 1', lastMessage: 'Hello', time: '12:00' },
+    { name: 'Room 2', lastMessage: 'Hello', time: '12:00', unreadCount: 10 },
+    { name: 'Room 1', lastMessage: 'Hello', time: '12:00' },
+    { name: 'Room 2', lastMessage: 'Hello', time: '12:00', unreadCount: 10 },
+    { name: 'Room 1', lastMessage: 'Hello', time: '12:00' },
+];
 
+const selectedRoom = ref(null);
+const isChatOpen = ref(false);
+
+const openChat = (room) => {
+    selectedRoom.value = room;
+    isChatOpen.value = true;
+};
+
+const closeChat = () => {
+    isChatOpen.value = false;
+};
 </script>
-
 
 <template>
     <div class="chats">
-
-    
         <div class="header">
             <h1>Sohbetler</h1>
             <div class="search">
                 <input type="text" placeholder="Ara...">
             </div>
         </div>
-
-        
         
         <div class="rooms">
-            <div class="room" v-for="room in rooms" :key="room.name">
+            <div class="room" v-for="room in rooms" :key="room.name" @click="openChat(room)">
                 <img src="/profile-pic.png" />
-
                 
                 <div class="content">
                     <div class="name">{{ room.name }}</div>
                     <div class="last-message">{{ room.lastMessage }}</div>
                 </div>
                 
-
                 <div class="message-info">
                     <div class="time">{{ room.time }}</div>
                     <div class="unread-count" v-if="room.unreadCount > 0">{{ room.unreadCount }}</div>
                 </div>
             </div>
         </div>
-        
     </div>
 
-    
-    
-    
+    <Teleport to="#app">
+        <Chat
+            v-if="selectedRoom" 
+            :room="selectedRoom" 
+            :is-open="isChatOpen"
+            @close="closeChat"
+        />
+    </Teleport>
 </template>
 
 <style scoped>
-
     .chats{
         height: 100%;
         overflow-y: scroll;
@@ -145,6 +111,12 @@ const rooms = [
         border-bottom: 1px solid #e0e0e0;
         padding: 15px;
         white-space: nowrap;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .room:active {
+        background-color: #f5f5f5;
     }
 
     .room img {
@@ -201,8 +173,4 @@ const rooms = [
         font-size: 12px;
         display: inline-block;
     }
-
-
-    
-
 </style>
