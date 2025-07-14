@@ -1,22 +1,15 @@
 package com.iuc_mobil.app
 
-import android.os.Build
-import android.view.Window
-import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.WindowCompat
 
 class MainActivity : TauriActivity() {
-
-    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            val window: Window = window
-            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        }
-        
+        // Bu modern ve doğru yöntemdir.
+        // Uygulamanın sistem çubuklarının arkasına çizilmesini sağlar.
+        WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 }

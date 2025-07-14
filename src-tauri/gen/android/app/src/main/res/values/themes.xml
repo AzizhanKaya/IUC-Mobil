@@ -2,7 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.iuc_mobil" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <item name="android:windowLightStatusBar" tools:targetApi="M">true</item>
+
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 </resources>
